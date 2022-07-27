@@ -8,7 +8,15 @@ import java.util.List;
 @Table
 public class Pacient {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @SequenceGenerator(
+          name = "pacient_sequence",
+          sequenceName = "pacient_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "pacient_sequence"
+  )
   private Long id;
 
   @Column(updatable = false, length = 45, nullable = false)

@@ -9,7 +9,15 @@ import java.util.Set;
 public class Specialty {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @SequenceGenerator(
+          name = "specialty_sequence",
+          sequenceName = "specialty_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "specialty_sequence"
+  )
   private Long id;
 
   @Column(nullable = false, length = 100)
