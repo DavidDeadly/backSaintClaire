@@ -22,8 +22,10 @@ public class SpecialtyController {
   @PutMapping(path = "{specialtyId}")
   public void addPacient(
           @PathVariable("specialtyId") Long specialtyId,
-          @RequestParam(name = "pacientId") Long pacientId
+          @RequestParam(name = "pacientId") Long pacientId,
+          @RequestParam(name = "date") String date
   ) {
-    specialtyService.addPacient(specialtyId, pacientId);
+    specialtyService.addPacient(specialtyId, pacientId, date);
   }
+
 }

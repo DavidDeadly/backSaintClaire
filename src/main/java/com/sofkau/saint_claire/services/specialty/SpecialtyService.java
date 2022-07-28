@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class SpecialtyService {
@@ -23,14 +21,18 @@ public class SpecialtyService {
     return specialtyRepository.findAll();
   }
 
+  public Specialty getSpecialty(Long id) {
+    Optional<Specialty> byId = specialtyRepository.findById(id);
+    if(byId.isEmpty()) throw new IllegalStateException("This specialty doesn't exist");
+    return byId.get();
+  }
+
   @Transactional
-  public void addPacient(Long specialtyId, Long pacientId) {
+  public void addPacient(Long specialtyId, Long pacientId, String date) {
     Optional<Specialty> byId = specialtyRepository.findById(specialtyId);
-    Pacient pacient = pacientService.getPacient(pacientId);
-    if(byId.isEmpty()) throw new IllegalStateException("That repository doesn't exist");
+    if(byId.isEmpty()) throw new IllegalStateException("This specialty doesn't exist");
     Specialty specialty = byId.get();
-    Set<Pacient> pacients = specialty.getPacients();
-    pacients.add(pacient);
-    specialty.setPacients(pacients);
+    Pacient pacient = pacientService.addPacientDate(pacientId, date);
+    pacient.setSpecialty(specialty);
   }
 }

@@ -1,8 +1,8 @@
 package com.sofkau.saint_claire.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table
@@ -31,10 +31,13 @@ public class Pacient {
   @Column(columnDefinition = "TEXT")
   private String datesAppointments;
 
-  @Transient
-  private List<String> datesAppointmentsList = new ArrayList<>();
-
   private Long numberOfAppointments;
+
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "specialty_id", referencedColumnName = "id")
+  @JsonBackReference
+  private Specialty specialty;
 
   public Pacient() {
   }
@@ -43,6 +46,7 @@ public class Pacient {
     this.name = name;
     this.age = age;
     this.identiticationNumber = identiticationNumber;
+    this.numberOfAppointments = 0L;
   }
 
   public Long getId() {
@@ -68,6 +72,7 @@ public class Pacient {
   public void setAge(Integer age) {
     this.age = age;
   }
+
   public Long getIdentiticationNumber() {
     return identiticationNumber;
   }
@@ -76,12 +81,12 @@ public class Pacient {
     this.identiticationNumber = identiticationNumber;
   }
 
-  public List<String> getDatesAppointmentsList() {
-    return datesAppointmentsList;
+  public String getDatesAppointments() {
+    return datesAppointments;
   }
 
-  public void setDatesAppointmentsList(List<String> datesAppointmentsList) {
-    this.datesAppointmentsList = datesAppointmentsList;
+  public void setDatesAppointments(String datesAppointments) {
+    this.datesAppointments = datesAppointments;
   }
 
   public Long getNumberOfAppointments() {
@@ -92,11 +97,11 @@ public class Pacient {
     this.numberOfAppointments = numberOfAppointments;
   }
 
-  public String getDatesAppointments() {
-    return datesAppointments;
+  public Specialty getSpecialty() {
+    return specialty;
   }
 
-  public void setDatesAppointments(String datesAppointments) {
-    this.datesAppointments = datesAppointments;
+  public void setSpecialty(Specialty specialty) {
+    this.specialty = specialty;
   }
 }
