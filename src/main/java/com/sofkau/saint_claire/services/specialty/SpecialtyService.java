@@ -1,5 +1,8 @@
 package com.sofkau.saint_claire.services.specialty;
 
+import com.sofkau.saint_claire.dto.Mapper;
+import com.sofkau.saint_claire.dto.pacient.PatientDTO;
+import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.entities.Specialty;
 import com.sofkau.saint_claire.services.pacient.PatientService;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SpecialtyService {
@@ -28,11 +32,13 @@ public class SpecialtyService {
   }
 
   @Transactional
-  public void addPatient(Long specialtyId, Long patientId, String date) {
+  public Specialty addPatient(Long specialtyId, Long patientId, String date) {
     Optional<Specialty> byId = specialtyRepository.findById(specialtyId);
     if(byId.isEmpty()) throw new IllegalStateException("This specialty doesn't exist");
     Specialty specialty = byId.get();
     Patient patient = pacientService.addPatientDate(patientId, date);
     patient.setSpecialty(specialty);
+    specialty.getPatients().add(patient);
+    return specialty;
   }
 }
