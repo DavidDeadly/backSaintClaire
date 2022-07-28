@@ -1,11 +1,12 @@
-package com.sofkau.saint_claire.services.pacient;
+package com.sofkau.saint_claire.services.patient;
 
 import com.sofkau.saint_claire.dto.Mapper;
-import com.sofkau.saint_claire.dto.pacient.PatientDTO;
+import com.sofkau.saint_claire.dto.patient.PatientDTO;
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.errors.InvalidRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class PatientService {
 
   public Patient getPatient(Long id) {
     Optional<Patient> byId = patientRepository.findById(id);
-    if (byId.isEmpty()) throw new IllegalStateException("That pacient doesn't exist");
+    if (byId.isEmpty()) throw new InvalidRequest("That patient doesn't exist");
     return byId.get();
   }
 
@@ -44,5 +45,22 @@ public class PatientService {
     if(nameLen < 10 || nameLen > 45) throw new InvalidRequest("Patient name must be between 10 & 45 characters");
 
     if(patient.age <= 0) throw new InvalidRequest("Patient age can't be zero or less");
+  }
+
+  public Patient deletePatient(Long id) {
+    Patient patient = getPatient(id);
+    patientRepository.deleteById(id);
+    return patient;
+  }
+
+  @Transactional
+  public Patient deletePatientAppointments(Long id, int newSize, boolean reverse) {
+    Patient patient = getPatient(id);
+    if(newSize <= 0) patient.setSpecialty(null);
+
+    if (!reverse) patient.setNumberOfAppointments(newSize);
+    else patient.setNumberOfAppointments((long) newSize);
+
+    return patient;
   }
 }

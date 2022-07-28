@@ -1,9 +1,7 @@
 package com.sofkau.saint_claire.controllers;
 
 import com.sofkau.saint_claire.dto.Mapper;
-import com.sofkau.saint_claire.dto.pacient.PatientDTO;
 import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
-import com.sofkau.saint_claire.entities.Specialty;
 import com.sofkau.saint_claire.services.specialty.SpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

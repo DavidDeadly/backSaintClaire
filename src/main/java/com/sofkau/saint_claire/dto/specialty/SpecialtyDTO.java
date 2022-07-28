@@ -1,6 +1,6 @@
 package com.sofkau.saint_claire.dto.specialty;
 
-import com.sofkau.saint_claire.dto.pacient.PatientDTO;
+import com.sofkau.saint_claire.dto.patient.PatientDTO;
 
 import java.util.Set;
 

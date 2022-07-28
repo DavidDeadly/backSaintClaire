@@ -1,4 +1,4 @@
-package com.sofkau.saint_claire.dto.pacient;
+package com.sofkau.saint_claire.dto.patient;
 
 import java.util.List;
 

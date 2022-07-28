@@ -2,7 +2,7 @@ package com.sofkau.saint_claire;
 
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.entities.Specialty;
-import com.sofkau.saint_claire.services.pacient.PatientRepository;
+import com.sofkau.saint_claire.services.patient.PatientRepository;
 import com.sofkau.saint_claire.services.specialty.SpecialtyRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

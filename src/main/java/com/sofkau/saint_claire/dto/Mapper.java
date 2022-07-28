@@ -1,11 +1,9 @@
 package com.sofkau.saint_claire.dto;
 
-import com.sofkau.saint_claire.dto.pacient.PatientDTO;
+import com.sofkau.saint_claire.dto.patient.PatientDTO;
 import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.entities.Specialty;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.stream.Collectors;
 
@@ -39,7 +37,7 @@ public final class Mapper {
             patient.getId(),
             patient.getName(),
             patient.getAge(),
-            patient.getIdentiticationNumber(),
+            patient.getIdentificationNumber(),
             patient.getDatesAppointments(),
             patient.getNumberOfAppointments()
     );

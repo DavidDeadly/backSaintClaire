@@ -1,17 +1,13 @@
 package com.sofkau.saint_claire.services.specialty;
 
-import com.sofkau.saint_claire.dto.Mapper;
-import com.sofkau.saint_claire.dto.pacient.PatientDTO;
-import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.entities.Specialty;
-import com.sofkau.saint_claire.services.pacient.PatientService;
+import com.sofkau.saint_claire.services.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class SpecialtyService {
