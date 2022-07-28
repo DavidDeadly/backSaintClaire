@@ -27,14 +27,7 @@ public class PacientService {
   public Pacient addPacientDate(Long pacientId, String date) {
     Pacient pacient = getPacient(pacientId);
     pacient.setNumberOfAppointments(pacient.getNumberOfAppointments() + 1);
-    String strDates = pacient.getDatesAppointments();
-    if(strDates == null) {
-      pacient.setDatesAppointments(date);
-    } else {
-      List<String> dates = new ArrayList<>(Arrays.asList(strDates.split(";")));
-      dates.add(date);
-      pacient.setDatesAppointments(String.join(";", dates));
-    }
+    pacient.setDatesAppointments(date);
     return pacient;
   }
 }

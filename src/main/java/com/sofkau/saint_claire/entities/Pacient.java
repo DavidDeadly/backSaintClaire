@@ -3,6 +3,9 @@ package com.sofkau.saint_claire.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table
@@ -25,7 +28,7 @@ public class Pacient {
   @Column(updatable = false, nullable = false)
   private Integer age;
 
-  @Column(updatable = false, nullable = false)
+  @Column(updatable = false, nullable = false, unique = true)
   private Long identiticationNumber;
 
   @Column(columnDefinition = "TEXT")
@@ -53,40 +56,30 @@ public class Pacient {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public Integer getAge() {
     return age;
   }
 
-  public void setAge(Integer age) {
-    this.age = age;
-  }
-
   public Long getIdentiticationNumber() {
     return identiticationNumber;
   }
 
-  public void setIdentiticationNumber(Long identiticationNumber) {
-    this.identiticationNumber = identiticationNumber;
+  public List<String> getDatesAppointments() {
+    String strDates = datesAppointments;
+    if(strDates == null) {
+      return new ArrayList<>();
+    }
+    return new ArrayList<>(List.of(strDates.split(";")));
   }
 
-  public String getDatesAppointments() {
-    return datesAppointments;
-  }
-
-  public void setDatesAppointments(String datesAppointments) {
-    this.datesAppointments = datesAppointments;
+  public void setDatesAppointments(String date) {
+    List<String> dates = getDatesAppointments();
+    dates.add(date);
+    this.datesAppointments = String.join(";", dates);
   }
 
   public Long getNumberOfAppointments() {

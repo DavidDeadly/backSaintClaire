@@ -47,10 +47,6 @@ public class Specialty {
     return id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
   public String getName() {
     return name;
   }
@@ -69,9 +65,5 @@ public class Specialty {
 
   public Set<Pacient> getPacients() {
     return pacients;
-  }
-
-  public void setPacients(Set<Pacient> pacients) {
-    this.pacients = pacients;
   }
 }
