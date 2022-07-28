@@ -33,9 +33,15 @@ public class Specialty {
           mappedBy = "specialty",
           cascade = CascadeType.ALL)
   @JsonManagedReference
-  private Set<Pacient> pacients = new HashSet<>();
+  private Set<Patient> patients = new HashSet<>();
 
   public Specialty() {
+  }
+
+  public Specialty(Long id, String name, String physicianInCharge) {
+    this.id = id;
+    this.name = name;
+    this.physicianInCharge = physicianInCharge;
   }
 
   public Specialty(String name, String physicianInCharge) {
@@ -63,7 +69,7 @@ public class Specialty {
     this.physicianInCharge = physicianInCharge;
   }
 
-  public Set<Pacient> getPacients() {
-    return pacients;
+  public Set<Patient> getPatients() {
+    return patients;
   }
 }

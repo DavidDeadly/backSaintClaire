@@ -4,12 +4,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Table
-public class Pacient {
+public class Patient {
   @Id
   @SequenceGenerator(
           name = "pacient_sequence",
@@ -42,10 +41,19 @@ public class Pacient {
   @JsonBackReference
   private Specialty specialty;
 
-  public Pacient() {
+  public Patient() {
   }
 
-  public Pacient(String name, Integer age, Long identiticationNumber) {
+  public Patient(Long id, String name, Integer age, Long identiticationNumber, String datesAppointments, Long numberOfAppointments) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.identiticationNumber = identiticationNumber;
+    this.datesAppointments = datesAppointments;
+    this.numberOfAppointments = numberOfAppointments;
+  }
+
+  public Patient(String name, Integer age, Long identiticationNumber) {
     this.name = name;
     this.age = age;
     this.identiticationNumber = identiticationNumber;
@@ -83,7 +91,7 @@ public class Pacient {
   }
 
   public Long getNumberOfAppointments() {
-    return numberOfAppointments;
+    return (long) getDatesAppointments().size();
   }
 
   public void setNumberOfAppointments(Long numberOfAppointments) {
