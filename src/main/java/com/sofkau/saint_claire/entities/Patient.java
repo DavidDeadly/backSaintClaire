@@ -44,11 +44,11 @@ public class Patient {
   public Patient() {
   }
 
-  public Patient(Long id, String name, Integer age, Long identiticationNumber, String datesAppointments, Long numberOfAppointments) {
+  public Patient(Long id, String name, Integer age, Long identificationNumber, String datesAppointments, Long numberOfAppointments) {
     this.id = id;
     this.name = name;
     this.age = age;
-    this.identiticationNumber = identiticationNumber;
+    this.identiticationNumber = identificationNumber;
     this.datesAppointments = datesAppointments;
     this.numberOfAppointments = numberOfAppointments;
   }

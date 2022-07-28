@@ -3,14 +3,14 @@ package com.sofkau.saint_claire.dto.pacient;
 import java.util.List;
 
 public class PatientDTO {
-  public final Long id;
-  public final String name;
-  public final Integer age;
-  public final Long identificationNumber;
-  public final List<String> datesAppointments;
-  public final Long numberOfAppointments;
+  public Long id;
+  public String name;
+  public Integer age;
+  public Long identificationNumber;
+  public List<String> datesAppointments;
+  public Long numberOfAppointments;
 
-  public PatientDTO(Long id, String name, Integer age, Long identificationNumber, List<String> datesAppointments, Long numberOfAppointments) {
+  public PatientDTO(Long id, String name, Integer age,  Long identificationNumber, List<String> datesAppointments, Long numberOfAppointments) {
     this.id = id;
     this.name = name;
     this.age = age;

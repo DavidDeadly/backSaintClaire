@@ -4,6 +4,8 @@ import com.sofkau.saint_claire.dto.pacient.PatientDTO;
 import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
 import com.sofkau.saint_claire.entities.Patient;
 import com.sofkau.saint_claire.entities.Specialty;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.stream.Collectors;
 
@@ -44,6 +46,12 @@ public final class Mapper {
   }
 
   public static Patient createPatientEntity(PatientDTO patientDTO) {
+    boolean hasId = patientDTO.id != null;
+
+    if(!hasId) {
+      return new Patient(patientDTO.name, patientDTO.age, patientDTO.identificationNumber);
+    }
+
     return new Patient(
             patientDTO.id,
             patientDTO.name,
