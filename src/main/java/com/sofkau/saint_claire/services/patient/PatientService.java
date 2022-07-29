@@ -3,7 +3,8 @@ package com.sofkau.saint_claire.services.patient;
 import com.sofkau.saint_claire.dto.Mapper;
 import com.sofkau.saint_claire.dto.patient.PatientDTO;
 import com.sofkau.saint_claire.entities.Patient;
-import com.sofkau.saint_claire.errors.InvalidRequest;
+import com.sofkau.saint_claire.errors.exceptions.CreationEntityException;
+import com.sofkau.saint_claire.errors.exceptions.NotFoundEntityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class PatientService {
 
   public Patient getPatient(Long id) {
     Optional<Patient> byId = patientRepository.findById(id);
-    if (byId.isEmpty()) throw new InvalidRequest("That patient doesn't exist");
+    if (byId.isEmpty()) throw new NotFoundEntityException("That patient doesn't exist");
     return byId.get();
   }
 
@@ -42,9 +43,9 @@ public class PatientService {
 
   private void checkPatientAtrs(PatientDTO patient) {
     int nameLen = patient.name.length();
-    if(nameLen < 10 || nameLen > 45) throw new InvalidRequest("Patient name must be between 10 & 45 characters");
+    if(nameLen < 10 || nameLen > 45) throw new CreationEntityException("Patient name must be between 10 & 45 characters");
 
-    if(patient.age <= 0) throw new InvalidRequest("Patient age can't be zero or less");
+    if(patient.age <= 0) throw new CreationEntityException("Patient age can't be zero or less");
   }
 
   public Patient deletePatient(Long id) {

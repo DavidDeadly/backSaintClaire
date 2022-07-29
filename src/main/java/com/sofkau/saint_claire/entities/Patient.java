@@ -1,7 +1,7 @@
 package com.sofkau.saint_claire.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sofkau.saint_claire.errors.InvalidRequest;
+import com.sofkau.saint_claire.errors.exceptions.IllegalChangeException;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -119,14 +119,14 @@ public class Patient {
 
   private void cutDatesAppointments(Long numberOfAppointments) {
     List<String> dates = getDatesAppointments();
-    if(numberOfAppointments > dates.size()) throw new InvalidRequest("That size exceeds the current number of appointments");
+    if(numberOfAppointments > dates.size()) throw new IllegalChangeException("That size exceeds the current number of appointments");
     dates = dates.subList(0, Math.toIntExact(numberOfAppointments));
     this.datesAppointments = String.join(";", dates);
   }
 
   private void cutDatesAppointmentsReverse(Integer newSize) {
     List<String> dates = getDatesAppointments();
-    if(newSize > dates.size()) throw new InvalidRequest("That size exceeds the current number of appointments");
+    if(newSize > dates.size()) throw new IllegalChangeException("That size exceeds the current number of appointments");
     Collections.reverse(dates);
     dates = dates.subList(0, newSize);
     Collections.reverse(dates);

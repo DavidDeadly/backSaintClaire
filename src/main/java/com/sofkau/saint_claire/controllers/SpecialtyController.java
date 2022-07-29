@@ -1,9 +1,8 @@
 package com.sofkau.saint_claire.controllers;
 
 import com.sofkau.saint_claire.dto.Mapper;
-import com.sofkau.saint_claire.dto.patient.PatientDTO;
 import com.sofkau.saint_claire.dto.specialty.SpecialtyDTO;
-import com.sofkau.saint_claire.errors.InvalidRequest;
+import com.sofkau.saint_claire.errors.exceptions.InvalidRequestException;
 import com.sofkau.saint_claire.services.specialty.SpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +44,7 @@ public class SpecialtyController {
     if (
       specialty.name == null ||
       specialty.physicianInCharge == null
-    ) throw new InvalidRequest("Specialty & Physician name are required for specialty creation");
+    ) throw new InvalidRequestException("Specialty & Physician name are required for specialty creation");
     return new ResponseEntity<>(
       Mapper.createSpecialtyDTO(
         specialtyService.createSpecialty(specialty)

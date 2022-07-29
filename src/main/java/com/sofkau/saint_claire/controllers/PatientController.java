@@ -2,7 +2,7 @@ package com.sofkau.saint_claire.controllers;
 
 import com.sofkau.saint_claire.dto.Mapper;
 import com.sofkau.saint_claire.dto.patient.PatientDTO;
-import com.sofkau.saint_claire.errors.InvalidRequest;
+import com.sofkau.saint_claire.errors.exceptions.InvalidRequestException;
 import com.sofkau.saint_claire.services.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +45,7 @@ public class PatientController {
       patient.name == null ||
       patient.age == null ||
       patient.identificationNumber == null
-    ) throw new InvalidRequest("name, age & identification number are required for patient creation");
+    ) throw new InvalidRequestException("name, age & identification number are required for patient creation");
 
     return new ResponseEntity<>(
       Mapper.createPatientDTO(

@@ -25,7 +25,7 @@ public class SaintClaireConfig implements WebMvcConfigurer {
       .addMapping("/**")
       .allowedHeaders("*")
       .allowedMethods("*")
-      .allowedOrigins("http://127.0.0.1:5500", "http://localhost:5500")
+      .allowedOrigins("*")
       .allowCredentials(false)
       .maxAge(-1);
     WebMvcConfigurer.super.addCorsMappings(registry);
@@ -38,9 +38,9 @@ public class SaintClaireConfig implements WebMvcConfigurer {
     return args -> {
       List<Specialty> specialties = new ArrayList<>(Arrays.asList(
               new Specialty("dermatology", "David Rueda"),
-              new Specialty("pediatrics,", "Isabel Rueda"),
-              new Specialty("nutrition,", "Sandra Jaramillo"),
-              new Specialty("general medicine,", "Jose Zapata"),
+              new Specialty("pediatrics", "Isabel Rueda"),
+              new Specialty("nutrition", "Sandra Jaramillo"),
+              new Specialty("general medicine ", "Jose Zapata"),
               new Specialty("pharmacy", "Jimmy Hoyos")));
       repository.saveAll(specialties);
     };
