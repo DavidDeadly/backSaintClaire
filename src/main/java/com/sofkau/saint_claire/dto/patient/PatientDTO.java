@@ -10,7 +10,10 @@ public class PatientDTO {
   public List<String> datesAppointments;
   public Long numberOfAppointments;
 
-  public PatientDTO(Long id, String name, Integer age,  Long identificationNumber, List<String> datesAppointments, Long numberOfAppointments) {
+  public PatientDTO() {
+  }
+
+  public PatientDTO(Long id, String name, Integer age, Long identificationNumber, List<String> datesAppointments, Long numberOfAppointments) {
     this.id = id;
     this.name = name;
     this.age = age;

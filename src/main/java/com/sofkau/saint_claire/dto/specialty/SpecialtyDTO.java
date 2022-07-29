@@ -5,10 +5,13 @@ import com.sofkau.saint_claire.dto.patient.PatientDTO;
 import java.util.Set;
 
 public class SpecialtyDTO {
-  public final Long id;
-  public final String name;
-  public final String physicianInCharge;
-  public final Set<PatientDTO> patients;
+  public Long id;
+  public String name;
+  public String physicianInCharge;
+  public Set<PatientDTO> patients;
+
+  public SpecialtyDTO() {
+  }
 
   public SpecialtyDTO(Long id, String name, String physicianInCharge, Set<PatientDTO> patients) {
     this.id = id;
