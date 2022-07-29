@@ -49,7 +49,7 @@ public class PatientService {
 
   public Patient deletePatient(Long id) {
     Patient patient = getPatient(id);
-    patientRepository.deleteById(id);
+    patientRepository.delete(patient);
     return patient;
   }
 
