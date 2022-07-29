@@ -18,7 +18,7 @@ public class SpecialtyService {
   private SpecialtyRepository specialtyRepository;
 
   @Autowired
-  private PatientService pacientService;
+  private PatientService patientService;
 
   public List<Specialty> getSpecialties() {
     return specialtyRepository.findAll();
@@ -35,7 +35,7 @@ public class SpecialtyService {
     Optional<Specialty> byId = specialtyRepository.findById(specialtyId);
     if(byId.isEmpty()) throw new IllegalStateException("This specialty doesn't exist");
     Specialty specialty = byId.get();
-    Patient patient = pacientService.addPatientDate(patientId, date);
+    Patient patient = patientService.addPatientDate(patientId, date);
     patient.setSpecialty(specialty);
     specialty.getPatients().add(patient);
     return specialty;
@@ -78,7 +78,7 @@ public class SpecialtyService {
   public Specialty deleteSpecialty(Long specialtyId) {
     Specialty specialty = getSpecialty(specialtyId);
     int quantityPatients = specialty.getPatients().size();
-    if(quantityPatients > 0) throw new InvalidRequest("This specialty still have pacients");
+    if(quantityPatients > 0) throw new InvalidRequest("This specialty still have patients");
     specialtyRepository.delete(specialty);
     return specialty;
   }
