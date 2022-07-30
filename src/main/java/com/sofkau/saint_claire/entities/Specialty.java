@@ -30,8 +30,7 @@ public class Specialty {
 
   @OneToMany(
           fetch = FetchType.EAGER,
-          mappedBy = "specialty",
-          cascade = CascadeType.ALL)
+          mappedBy = "specialty")
   @JsonManagedReference
   private Set<Patient> patients = new HashSet<>();
 

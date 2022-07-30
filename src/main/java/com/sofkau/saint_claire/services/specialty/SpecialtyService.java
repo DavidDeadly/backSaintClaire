@@ -76,7 +76,7 @@ public class SpecialtyService {
 
   private void checkSpecialtyPhysician(String physicianInCharge) {
     int nameLen = physicianInCharge.length();
-    if(nameLen < 10 || nameLen > 45) throw new CreationEntityException("Specialty name must be between 5 & 100 characters");
+    if(nameLen < 10 || nameLen > 45) throw new CreationEntityException("Physician in charge name must be between 10 & 45 characters");
   }
 
   public Specialty deleteSpecialty(Long specialtyId) {

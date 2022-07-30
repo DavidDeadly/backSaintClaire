@@ -38,7 +38,7 @@ public class Patient {
   private Long numberOfAppointments;
 
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "specialty_id", referencedColumnName = "id")
   @JsonBackReference
   private Specialty specialty;
